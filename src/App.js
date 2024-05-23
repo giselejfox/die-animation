@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { useDispatch, useSelector } from 'react-redux';
 
-function App() {
+import DieFace from './components/DieFace';
+import RollButton from './components/RollButton';
+
+import { toggleHold } from './redux/dieSlice';
+
+export default function App() {
+
+  const dispatch = useDispatch();
+  const currentDieRoll = useSelector((state) => state.dice);
+  console.log(currentDieRoll)
+
+  const handleToggleDieHold = (dieID) => {
+    dispatch(toggleHold({ dieID }));
+  }
+
+  // Based on the keys and data in the initialDieRollSetup we will build the DieFace components
+  const dieFaces = Object.keys(currentDieRoll).map((dieID) => {
+    // console.log("in the const dieFaces" +dieID)
+    return <DieFace key={dieID} dieID={dieID} num={currentDieRoll[dieID].num} handleToggleDieHold={handleToggleDieHold} currentDieRoll={currentDieRoll} />
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App container">
+      <div className='d-flex flex-row m-5'>
+        {dieFaces}
+      </div>
+      <RollButton />
     </div>
   );
 }
-
-export default App;
