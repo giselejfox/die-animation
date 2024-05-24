@@ -5,6 +5,7 @@ import yahtzeeSheetReducer from '../redux/yahtzeeSheetSlice';
 // Create store
 export default configureStore({
     reducer: {
-        dice: diceReducer
+        dice: diceReducer,
+        yahtzeeSheets: yahtzeeSheetReducer,
     }
 });

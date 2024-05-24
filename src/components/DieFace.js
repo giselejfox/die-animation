@@ -1,5 +1,11 @@
+import { useDispatch } from 'react-redux';
+import { toggleHold } from '../redux/dieSlice';
 
-export default function DieFace({dieID, num, handleToggleDieHold, currentDieRoll}) {
+
+export default function DieFace({dieID, num, currentDieRoll}) {
+
+    const dispatch = useDispatch();
+    const handleToggleDieHold = (dieID) => { dispatch(toggleHold({ dieID })) }
 
     const dieCircles = DieConfigs[num].map((circleCoordinates) => {
         return <DieCircle key={Math.random()} x={circleCoordinates.x} y={circleCoordinates.y} />
