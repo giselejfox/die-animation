@@ -12,7 +12,7 @@ export function UnselectedSection ({ currentDieRoll, section }) {
 
     const dispatch = useDispatch();
 
-    const handleSetScore = ({ playerName, sectionID, score }) => {
+    const handleSetScore = (playerName, sectionID, score) => {
         dispatch(updateSheet({ playerName, sectionID, score }))
     }
 
@@ -20,7 +20,7 @@ export function UnselectedSection ({ currentDieRoll, section }) {
 
     return (
         <button 
-            onClick={handleSetScore("Alice", section.id, score)} 
+            onClick={() => handleSetScore("Alice", section.id, score)} 
             key={section.id} 
             className='btn btn-outline-dark m-2'
         >

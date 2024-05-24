@@ -56,9 +56,9 @@ const yahtzeeSheetSlice = createSlice({
         state.playerSheets[playerName] = { ...initialScoreSheet };
       },
       updateSheet(state, action) {
-        const { playerName, category, score } = action.payload;
-        if (state.playerSheets[playerName] && state.playerSheets[playerName][category] === "empty") {
-          state.playerSheets[playerName][category] = score;
+        const { playerName, sectionID, score } = action.payload;
+        if (state.playerSheets[playerName] && state.playerSheets[playerName][sectionID] === "empty") {
+          state.playerSheets[playerName][sectionID] = score;
         }
       },
       addExtraYahtzeePoints(state, action) {
